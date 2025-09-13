@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #f4f4f4;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.5s ease;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            background: rgb(13, 165, 216);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: blue;
+        }
+        .complete-btn {
+            background: orange;
+            margin-left: 10px;
+            padding: 5px 10px;
+        }
+        .complete-btn:hover {
+            background: darkorange;
+        }
+        .completed {
+            background: yellow !important;
+        }
+        #undo {
+            margin-top: 20px;
+            display: none;
+            background: green;
+        }
+        #undo:hover {
+            background: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    <h1>To Do List</h1>
+    <ul id="list">
+        <li>Item 1 <button class="complete-btn">Complete</button></li>
+        <li>Item 2 <button class="complete-btn">Complete</button></li>
+        <li>Item 3 <button class="complete-btn">Complete</button></li>
+    </ul>
+    <input type="text" id="myInput" placeholder="Enter a task">
+    <button id="add">Add Task</button>
+    <br>
+    <button id="undo">Undo</button>
+
+    <script>
+        $(document).ready(function(){
+            let lastRemoved = null; // store last removed task
+
+            // Add new task with Complete button
+            $("#add").click(function(){
+                let task=$("#myInput").val().trim();
+                if(task){
+                    $("#list").append("<li>" + task + " <button class='complete-btn'>Complete</button></li>");
+                    $("#myInput").val("");
+                }
+            });
+
+            // Handle Complete button click (highlight then remove)
+            $(document).on("click", ".complete-btn", function(){
+                let item = $(this).parent();
+                item.addClass("completed"); // turn yellow
+                setTimeout(function(){
+                    lastRemoved = item.detach(); // remove after delay
+                    $("#undo").show(); // show undo button
+                }, 500);
+            });
+
+            // Undo button restores last removed task
+            $("#undo").click(function(){
+                if(lastRemoved){
+                    $("#list").append(lastRemoved);
+                    lastRemoved.removeClass("completed"); // reset background
+                    lastRemoved = null;
+                    $("#undo").hide(); // hide undo button
+                }
+            });
+        });
+    </script>
+</body>
+</html>

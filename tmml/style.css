@@ -1,0 +1,32 @@
+body{
+    font-family:arial,sans-serif;
+    text-align: center;
+    padding: 20px;
+    background:rgb(193, 193, 192);
+}
+h1{
+    color: brown;
+}
+section{
+    background: blue;
+    padding: 20px;
+    margin:20px auto;
+    border-radius:10px;
+    max-width:400px;
+    box-shadow: 0 2px 6px rgba(red, green, blue, alpha);
+}
+input,button{
+    padding:10px;
+    margin:5px;
+    font-size: 16px;
+}
+button{
+    background:rgb(197, 197, 204)
+}
+button:hover{
+    backgrounb:black;
+}
+#weather{
+    margin-top: 20px;
+    font-size: 20px;
+}
