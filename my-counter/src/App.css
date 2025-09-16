@@ -1,0 +1,44 @@
+/* App.css */
+.App {
+  display: flex;
+  flex-direction: column; /* stack children vertically */
+  justify-content: center;   /* vertical center */
+  align-items: center;       /* horizontal center */
+  height: 100vh;      /* full screen height */
+  width: 100vw;       /* full screen width */
+  background-color: #f0f0f0; /* light background */
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:nth-child(2) {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+button:nth-child(3) {
+  background-color: #f44336; /* Red */
+  color: white;
+}
+
+button:nth-child(4) {
+  background-color: #2196F3; /* Blue */
+  color: white;
+}
